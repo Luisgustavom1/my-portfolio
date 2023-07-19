@@ -1,12 +1,13 @@
 import { styled } from "@/lib/stitches.config";
-import { PropsWithChildren } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
-interface IconButtonProps {}
+type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const IconButton = ({
   children,
+  ...rest
 }: PropsWithChildren<IconButtonProps>) => {
-  return <Container>{children}</Container>;
+  return <Container {...rest}>{children}</Container>;
 };
 
 const Container = styled("button", {

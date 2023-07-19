@@ -1,6 +1,6 @@
 import { styled } from "@/lib/stitches.config";
 
-type Icons = "menu" | "chevronRight";
+type Icons = "menu" | "chevronRight" | "chevronLeft";
 
 interface IconsProps {
   icon: Icons;

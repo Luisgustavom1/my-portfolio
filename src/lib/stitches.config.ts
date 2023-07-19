@@ -12,7 +12,8 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      background: "rgb(251, 251, 250)",
+      white100: "rgb(251, 251, 250)",
+      white700: "rgb(255, 255, 255)",
       gray: "rgb(233, 233, 231)",
       primary: "rgb(55, 53, 47)",
       primary100: "rgba(55, 53, 47, 0.85)",
@@ -22,6 +23,7 @@ export const {
       primary700: "rgba(55, 53, 47, 0.08)",
       blue: "rgb(0, 117, 211)",
       red: "rgb(235, 87, 87)",
+      focus: "rgb(35, 131, 226)",
     },
     space: {
       ...Object.fromEntries(
@@ -46,7 +48,7 @@ export const {
       xlg: "32px",
     },
     transitions: {
-      default: "background 20ms ease-in 0s",
+      default: "all 20ms ease-in 0s",
     },
   },
 });

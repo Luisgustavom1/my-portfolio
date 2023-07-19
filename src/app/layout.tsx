@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getCssText, styled } from "@/lib/stitches.config";
-import { Header } from "@site/ui";
+import { Drawer } from "@site/ui";
 
 export const metadata: Metadata = {
   title: "Luis Gustavo | Home",
@@ -22,13 +22,12 @@ export default function RootLayout({
       </head>
 
       <Body>
-        <Header />
-        {children}
+        <Drawer>{children}</Drawer>
       </Body>
     </html>
   );
 }
 
 const Body = styled("body", {
-  backgroundColor: "$surfaceContainerLowest",
+  backgroundColor: "$white700",
 });
