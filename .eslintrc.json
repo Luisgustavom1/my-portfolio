@@ -24,12 +24,29 @@
   "plugins": [
     "@typescript-eslint",
     "react-hooks",
-    "prettier"
+    "prettier",
+    "eslint-plugin-import-helpers"
   ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "import-helpers/order-imports": [
+      "error",
+      {
+        "groups": [
+          "/^react/",
+          "/^next/",
+          "module",
+          "/^@design-system/",
+          "/^@site/",
+          "/^@//",
+          ["parent", "sibling"],
+          "index"
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ]
   },
   "ignorePatterns": [
     "!.lintstagedrc.js"

@@ -1,8 +1,8 @@
 "use client";
 
-import { styled } from "@/lib/stitches.config";
-import * as Toolbar from "@radix-ui/react-toolbar";
 import { PropsWithChildren } from "react";
+import * as Toolbar from "@radix-ui/react-toolbar";
+import { styled } from "@/lib/stitches.config";
 
 export const Header = ({ children }: PropsWithChildren<unknown>) => {
   return (

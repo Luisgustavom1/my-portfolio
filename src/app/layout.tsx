@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { getCssText, styled } from "@/lib/stitches.config";
 import { Drawer } from "@site/ui";
+import { getCssText, styled } from "@/lib/stitches.config";
 
 export const metadata: Metadata = {
   title: "Luis Gustavo | Home",

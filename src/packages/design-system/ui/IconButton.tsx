@@ -1,5 +1,5 @@
-import { styled } from "@/lib/stitches.config";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
+import { styled } from "@/lib/stitches.config";
 
 type IconButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 

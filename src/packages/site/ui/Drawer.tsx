@@ -1,12 +1,12 @@
 "use client";
 
 import { PropsWithChildren, useRef, useState } from "react";
-import { styled } from "@/lib/stitches.config";
+import Image from "next/image";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Icon, IconButton, Title } from "@design-system/ui";
-import { Flex } from "./Flex";
-import Image from "next/image";
 import MyAvatar from "@site/shared/assets/my-avatar.webp";
+import { styled } from "@/lib/stitches.config";
+import { Flex } from "./Flex";
 import { Header } from "./Header";
 
 interface DrawerProps {}
