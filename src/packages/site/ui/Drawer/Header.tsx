@@ -23,10 +23,9 @@ export const Header = ({ showCloseButton, onClose }: HeaderProps) => {
 
       {showCloseButton && (
         <DrawerClose asChild onClick={onClose}>
-          <Button
-            className="close-drawer"
-            startIcon={<Icon icon="chevronLeft" />}
-          />
+          <Button className="close-drawer">
+            <Icon icon="chevronLeft" />
+          </Button>
         </DrawerClose>
       )}
     </DrawerHeader>

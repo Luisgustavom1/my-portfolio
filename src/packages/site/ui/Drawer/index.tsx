@@ -49,12 +49,9 @@ const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
             <Header>
               {!isClicked && (
                 <Dialog.Trigger asChild>
-                  <Button
-                    onClick={() => setDrawerState("clicked")}
-                    startIcon={
-                      <Icon icon={isHovered ? "chevronRight" : "menu"} />
-                    }
-                  />
+                  <Button onClick={() => setDrawerState("clicked")}>
+                    <Icon icon={isHovered ? "chevronRight" : "menu"} />
+                  </Button>
                 </Dialog.Trigger>
               )}
             </Header>
