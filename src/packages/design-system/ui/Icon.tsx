@@ -6,7 +6,10 @@ type Icons =
   | "chevronLeft"
   | "search"
   | "clock"
-  | "largeClock";
+  | "largeClock"
+  | "github"
+  | "linkedin"
+  | "dev.to";
 
 interface IconsProps {
   color?: string;

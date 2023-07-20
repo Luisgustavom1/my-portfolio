@@ -42,6 +42,7 @@ const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
             showCloseButton={isClicked}
             onClose={() => setDrawerState("suspended")}
           />
+
           <Items />
         </DialogContent>
 
