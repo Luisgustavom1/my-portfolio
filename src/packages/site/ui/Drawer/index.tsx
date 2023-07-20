@@ -1,13 +1,13 @@
 "use client";
 
 import { PropsWithChildren, useRef, useState } from "react";
-import Image from "next/image";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Icon, IconButton, Title } from "@design-system/ui";
-import MyAvatar from "@site/shared/assets/my-avatar.webp";
+import { Icon, Button } from "@design-system/ui";
 import { styled } from "@/lib/stitches.config";
-import { Flex } from "./Flex";
-import { Header } from "./Header";
+import { Flex } from "../Flex";
+import { Header } from "../Header";
+import { Header as DrawerHeader } from "./Header";
+import { Items } from "./Items";
 
 interface DrawerProps {}
 
@@ -33,25 +33,11 @@ const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
     >
       <Dialog.Root open={isOpen}>
         <DialogContent as="aside" size={drawerState} ref={portalRef}>
-          <HeaderDrawer as="header">
-            <Avatar>
-              <Image alt="avatar" width={20} height={20} src={MyAvatar} />
-            </Avatar>
-
-            <Dialog.Title>
-              <Title.small>Luisao&#39;s Notion</Title.small>
-            </Dialog.Title>
-
-            {isClicked && (
-              <DialogClose asChild onClick={() => setDrawerState("hovered")}>
-                <IconButton>
-                  <Icon icon="chevronLeft" />
-                </IconButton>
-              </DialogClose>
-            )}
-          </HeaderDrawer>
-
-          <Dialog.Description>Testing</Dialog.Description>
+          <DrawerHeader
+            showCloseButton={isClicked}
+            onClose={() => setDrawerState("hovered")}
+          />
+          <Items />
         </DialogContent>
 
         <Container>
@@ -63,9 +49,12 @@ const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
             <Header>
               {!isClicked && (
                 <Dialog.Trigger asChild>
-                  <IconButton onClick={() => setDrawerState("clicked")}>
-                    <Icon icon={isHovered ? "chevronRight" : "menu"} />
-                  </IconButton>
+                  <Button
+                    onClick={() => setDrawerState("clicked")}
+                    startIcon={
+                      <Icon icon={isHovered ? "chevronRight" : "menu"} />
+                    }
+                  />
                 </Dialog.Trigger>
               )}
             </Header>
@@ -78,27 +67,6 @@ const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
   );
 };
 
-const HeaderDrawer = styled(Flex, {
-  alignItems: "center",
-  padding: "$3",
-
-  "&:hover": {
-    backgroundColor: "$primary700",
-    transition: "$default",
-  },
-
-  "& > *:first-child": {
-    marginRight: "$2",
-  },
-});
-
-const Avatar = styled("div", {
-  borderRadius: "$sm",
-  height: "20px",
-  overflow: "hidden",
-  width: "20px",
-});
-
 const DialogContent = styled(Dialog.Content, {
   transition: `all ${animationDuration}ms ease-in`,
   transform: "translateX(0)",
@@ -109,6 +77,10 @@ const DialogContent = styled(Dialog.Content, {
 
   "&:focus": {
     outline: "none",
+  },
+
+  "&:hover .close-drawer": {
+    opacity: 1,
   },
 
   variants: {
@@ -134,16 +106,6 @@ const DialogContent = styled(Dialog.Content, {
 
   defaultVariants: {
     size: "closed",
-  },
-});
-
-const DialogClose = styled(Dialog.Close, {
-  marginLeft: "auto",
-  opacity: 0,
-  transition: "$default",
-
-  "&:hover": {
-    opacity: 1,
   },
 });
 
