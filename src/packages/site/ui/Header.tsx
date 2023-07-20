@@ -3,8 +3,8 @@
 import { PropsWithChildren } from "react";
 import * as Toolbar from "@radix-ui/react-toolbar";
 import { Button, Icon, IconButton, Title } from "@design-system/ui";
+import { Flex } from "@design-system/ui";
 import { styled } from "@/lib/stitches.config";
-import { Flex } from "./Flex";
 
 interface HeaderProps {}
 

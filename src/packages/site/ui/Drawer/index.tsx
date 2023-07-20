@@ -3,8 +3,8 @@
 import { MouseEvent, PropsWithChildren, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Icon, IconButton } from "@design-system/ui";
+import { Flex } from "@design-system/ui";
 import { styled } from "@/lib/stitches.config";
-import { Flex } from "../Flex";
 import { Header } from "../Header";
 import { Header as DrawerHeader } from "./Header";
 import { Items } from "./Items";

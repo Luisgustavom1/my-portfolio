@@ -4,9 +4,9 @@ import {
   Close as DialogClose,
 } from "@radix-ui/react-dialog";
 import { IconButton, Icon, Title } from "@design-system/ui";
+import { Flex } from "@design-system/ui";
 import MyAvatar from "@site/shared/assets/my-avatar.webp";
 import { styled } from "@/lib/stitches.config";
-import { Flex } from "../Flex";
 
 interface HeaderProps {
   showCloseButton: boolean;
