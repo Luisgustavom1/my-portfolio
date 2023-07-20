@@ -46,7 +46,8 @@
         ],
         "alphabetize": { "order": "asc", "ignoreCase": true }
       }
-    ]
+    ],
+    "no-duplicate-imports": ["error", { "includeExports": true }]
   },
   "ignorePatterns": [
     "!.lintstagedrc.js"

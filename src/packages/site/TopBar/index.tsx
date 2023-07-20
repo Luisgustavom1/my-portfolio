@@ -2,13 +2,12 @@
 
 import { PropsWithChildren } from "react";
 import * as Toolbar from "@radix-ui/react-toolbar";
-import { Button, Icon, IconButton, Title } from "@design-system/ui";
-import { Flex } from "@design-system/ui";
+import { Button, Icon, IconButton, Title, Flex } from "@design-system/ui";
 import { styled } from "@/lib/stitches.config";
 
-interface HeaderProps {}
+interface TopBarProps {}
 
-export const Header = ({ children }: PropsWithChildren<HeaderProps>) => {
+export const TopBar = ({ children }: PropsWithChildren<TopBarProps>) => {
   return (
     <Toolbar.Root asChild aria-label="Barra de navegação">
       <ToolbarRoot>

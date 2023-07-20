@@ -1,23 +1,25 @@
 "use client";
 
-import { MouseEvent, PropsWithChildren, useState } from "react";
+import React, { MouseEvent, ReactElement, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Icon, IconButton } from "@design-system/ui";
 import { Flex } from "@design-system/ui";
 import { styled } from "@/lib/stitches.config";
-import { Header } from "../Header";
-import { Header as DrawerHeader } from "./Header";
-import { Items } from "./Items";
+import { Header as DrawerHeader } from "./ui/Header";
+import { Items } from "./ui/Items";
+import { OpenDrawerButton } from "./ui/OpenDrawerButton";
 
-interface DrawerProps {}
+interface DrawerProps {
+  TopBar: ReactElement;
+  Content: ReactElement;
+}
 
 type DrawerState = "closed" | "clicked" | "suspended";
 
 const WIDTH_TO_OPEN_SUSPENDED_DRAWER = 120;
 const ANIMATION_DURATION = 250;
 
-const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
-  const [drawerState, setDrawerState] = useState<DrawerState>("closed");
+const Drawer = ({ TopBar, Content }: DrawerProps) => {
+  const [drawerState, setDrawerState] = useState<DrawerState>("clicked");
 
   const isOpen = drawerState !== "closed";
   const isClicked = drawerState === "clicked";
@@ -47,20 +49,18 @@ const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
         </DialogContent>
 
         <Container>
-          <Header>
-            {!isClicked && (
-              <Dialog.Trigger asChild>
-                <IconButton onClick={() => setDrawerState("clicked")}>
-                  <Icon
-                    size={16}
-                    icon={isSuspended ? "chevronRight" : "menu"}
-                  />
-                </IconButton>
-              </Dialog.Trigger>
-            )}
-          </Header>
+          {React.cloneElement(
+            TopBar,
+            undefined,
+            !isClicked && (
+              <OpenDrawerButton
+                onClick={() => setDrawerState("clicked")}
+                icon={isSuspended ? "chevronRight" : "menu"}
+              />
+            ),
+          )}
 
-          {children}
+          {Content}
         </Container>
       </Dialog.Root>
     </Wrapper>
