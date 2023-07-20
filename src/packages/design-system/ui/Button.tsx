@@ -9,6 +9,8 @@ export const Button = styled("button", {
   display: "flex",
   gap: "$2",
   justifyContent: "center",
+  padding: "6px $2",
+  transition: "$default",
 
   "&:hover": {
     backgroundColor: "$primary700",

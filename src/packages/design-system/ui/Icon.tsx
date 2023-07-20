@@ -1,43 +1,35 @@
 import { styled } from "@/lib/stitches.config";
 
-type Icons = "menu" | "chevronRight" | "chevronLeft" | "search";
+type Icons =
+  | "menu"
+  | "chevronRight"
+  | "chevronLeft"
+  | "search"
+  | "clock"
+  | "largeClock";
 
 interface IconsProps {
   color?: string;
   icon: Icons;
-  size?: "sm" | "md" | "lg";
+  size?: number;
 }
 
-export const Icon = ({ color, icon, size }: IconsProps) => {
+export const Icon = ({
+  color = "$primary300",
+  icon,
+  size = 24,
+}: IconsProps) => {
   return (
-    <Container color={color} size={size}>
+    <Container
+      css={{ color, width: size, height: size }}
+      width={size}
+      height={size}
+    >
       <use href={`/icons.svg#${icon}`} />
     </Container>
   );
 };
 
 const Container = styled("svg", {
-  color: "$primary300",
-  padding: "$1",
-
-  variants: {
-    size: {
-      sm: {
-        height: 20,
-        width: 20,
-      },
-      md: {
-        height: 24,
-        width: 24,
-      },
-      lg: {
-        height: 32,
-        width: 32,
-      },
-    },
-  },
-
-  defaultVariants: {
-    size: "md",
-  },
+  margin: "$1",
 });
