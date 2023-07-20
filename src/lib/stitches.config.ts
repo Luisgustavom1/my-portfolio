@@ -33,7 +33,7 @@ export const {
       ),
     },
     fonts: {
-      default: "Helvetica",
+      default: "ui-sans-serif, Helvetica",
     },
     sizes: {
       sm: "640px",
@@ -58,10 +58,10 @@ globalCss({
     margin: 0,
     padding: 0,
     boxSizing: "border-box",
+    fontFamily: "$default",
   },
   "html, body": {
     height: "100%",
-    fontFamily: "$default",
   },
   "img, svg": {
     userSelect: "none",
