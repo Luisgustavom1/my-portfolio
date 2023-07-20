@@ -1,6 +1,6 @@
 "use client";
 
-import { PropsWithChildren, useState } from "react";
+import { MouseEvent, PropsWithChildren, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Icon, IconButton } from "@design-system/ui";
 import { styled } from "@/lib/stitches.config";
@@ -11,65 +11,68 @@ import { Items } from "./Items";
 
 interface DrawerProps {}
 
-type DrawerState = "closed" | "clicked" | "hovered";
+type DrawerState = "closed" | "clicked" | "suspended";
 
-const animationDuration = 250;
+const WIDTH_TO_OPEN_SUSPENDED_DRAWER = 120;
+const ANIMATION_DURATION = 250;
 
 const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
   const [drawerState, setDrawerState] = useState<DrawerState>("closed");
 
   const isOpen = drawerState !== "closed";
   const isClicked = drawerState === "clicked";
-  const isHovered = drawerState === "hovered";
+  const isSuspended = drawerState === "suspended";
 
   const close = () => setDrawerState("closed");
 
+  const openSmallDrawer = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.clientX <= WIDTH_TO_OPEN_SUSPENDED_DRAWER) {
+      if (!isClicked) setDrawerState("suspended");
+      return;
+    }
+
+    if (isSuspended) close();
+  };
+
   return (
-    <Flex
-      onMouseLeave={() => {
-        if (isHovered) close();
-      }}
-    >
+    <Wrapper onMouseMove={openSmallDrawer}>
       <Dialog.Root open={isOpen}>
         <DialogContent as="aside" size={drawerState}>
           <DrawerHeader
             showCloseButton={isClicked}
-            onClose={() => setDrawerState("hovered")}
+            onClose={() => setDrawerState("suspended")}
           />
           <Items />
         </DialogContent>
 
         <Container>
-          <AreaToHovered
-            onMouseOver={() => {
-              if (!isClicked) setDrawerState("hovered");
-            }}
-          >
-            <Header>
-              {!isClicked && (
-                <Dialog.Trigger asChild>
-                  <IconButton onClick={() => setDrawerState("clicked")}>
-                    <Icon
-                      size={16}
-                      icon={isHovered ? "chevronRight" : "menu"}
-                    />
-                  </IconButton>
-                </Dialog.Trigger>
-              )}
-            </Header>
+          <Header>
+            {!isClicked && (
+              <Dialog.Trigger asChild>
+                <IconButton onClick={() => setDrawerState("clicked")}>
+                  <Icon
+                    size={16}
+                    icon={isSuspended ? "chevronRight" : "menu"}
+                  />
+                </IconButton>
+              </Dialog.Trigger>
+            )}
+          </Header>
 
-            {children}
-          </AreaToHovered>
+          {children}
         </Container>
       </Dialog.Root>
-    </Flex>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled(Flex, {
+  height: "100%",
+});
+
 const DialogContent = styled(Dialog.Content, {
-  transition: `all ${animationDuration}ms ease-in`,
-  transform: "translateX(0)",
-  top: 60,
+  transition: `all ${ANIMATION_DURATION}ms ease-in`,
+  opacity: 1,
   position: "absolute",
   width: 240,
   zIndex: 999,
@@ -87,18 +90,20 @@ const DialogContent = styled(Dialog.Content, {
       clicked: {
         backgroundColor: "$white100",
         height: "100vh",
-        top: 0,
         position: "relative",
+        transform: "translateX(0)",
       },
-      hovered: {
+      suspended: {
         background: "$white700",
         borderRadius: "$sm",
         boxShadow:
           "rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px",
+        transform: "translateX(0) translateY(60px)",
       },
       closed: {
+        opacity: 0,
+        transform: "translateX(-240px) translateY(60px)",
         width: 0,
-        transform: "translateX(-240px)",
       },
     },
   },
@@ -109,19 +114,7 @@ const DialogContent = styled(Dialog.Content, {
 });
 
 const Container = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  height: "100%",
-  transition: `all ${animationDuration}ms ease-in`,
-  width: "100%",
-});
-
-const AreaToHovered = styled("div", {
-  background: "transparent",
-  height: "100vh",
-  width: 120,
-  position: "absolute",
-  zIndex: 1,
+  flex: 1,
 });
 
 export { Drawer };
