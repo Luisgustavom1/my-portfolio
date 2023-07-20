@@ -1,8 +1,8 @@
 "use client";
 
-import { PropsWithChildren, useRef, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Icon, Button } from "@design-system/ui";
+import { Icon, IconButton } from "@design-system/ui";
 import { styled } from "@/lib/stitches.config";
 import { Flex } from "../Flex";
 import { Header } from "../Header";
@@ -17,7 +17,6 @@ const animationDuration = 250;
 
 const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
   const [drawerState, setDrawerState] = useState<DrawerState>("closed");
-  const portalRef = useRef(null);
 
   const isOpen = drawerState !== "closed";
   const isClicked = drawerState === "clicked";
@@ -32,7 +31,7 @@ const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
       }}
     >
       <Dialog.Root open={isOpen}>
-        <DialogContent as="aside" size={drawerState} ref={portalRef}>
+        <DialogContent as="aside" size={drawerState}>
           <DrawerHeader
             showCloseButton={isClicked}
             onClose={() => setDrawerState("hovered")}
@@ -49,9 +48,12 @@ const Drawer = ({ children }: PropsWithChildren<DrawerProps>) => {
             <Header>
               {!isClicked && (
                 <Dialog.Trigger asChild>
-                  <Button onClick={() => setDrawerState("clicked")}>
-                    <Icon icon={isHovered ? "chevronRight" : "menu"} />
-                  </Button>
+                  <IconButton onClick={() => setDrawerState("clicked")}>
+                    <Icon
+                      size={16}
+                      icon={isHovered ? "chevronRight" : "menu"}
+                    />
+                  </IconButton>
                 </Dialog.Trigger>
               )}
             </Header>
@@ -92,7 +94,7 @@ const DialogContent = styled(Dialog.Content, {
         background: "$white700",
         borderRadius: "$sm",
         boxShadow:
-          "rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px",
+          "rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px",
       },
       closed: {
         width: 0,
@@ -109,7 +111,9 @@ const DialogContent = styled(Dialog.Content, {
 const Container = styled("div", {
   display: "flex",
   flexDirection: "column",
-  transition: `margin ${animationDuration}ms ease-in`,
+  height: "100%",
+  transition: `all ${animationDuration}ms ease-in`,
+  width: "100%",
 });
 
 const AreaToHovered = styled("div", {

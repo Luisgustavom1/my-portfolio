@@ -1,6 +1,9 @@
 import Image from "next/image";
-import { DialogTitle, DialogClose } from "@radix-ui/react-dialog";
-import { Button, Icon, Title } from "@design-system/ui";
+import {
+  Title as DialogTitle,
+  Close as DialogClose,
+} from "@radix-ui/react-dialog";
+import { IconButton, Icon, Title } from "@design-system/ui";
 import MyAvatar from "@site/shared/assets/my-avatar.webp";
 import { styled } from "@/lib/stitches.config";
 import { Flex } from "../Flex";
@@ -23,9 +26,9 @@ export const Header = ({ showCloseButton, onClose }: HeaderProps) => {
 
       {showCloseButton && (
         <DrawerClose asChild onClick={onClose}>
-          <Button className="close-drawer">
-            <Icon icon="chevronLeft" />
-          </Button>
+          <IconButton className="close-drawer">
+            <Icon size={16} icon="chevronLeft" />
+          </IconButton>
         </DrawerClose>
       )}
     </DrawerHeader>
