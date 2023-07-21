@@ -48,7 +48,8 @@ export const {
       xlg: "32px",
     },
     transitions: {
-      default: "all 20ms ease-in 0s",
+      default: "all 20ms ease-in",
+      drawer: "all 250ms ease-in",
     },
   },
 });

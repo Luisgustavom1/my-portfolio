@@ -16,7 +16,6 @@ interface DrawerProps {
 type DrawerState = "closed" | "clicked" | "suspended";
 
 const WIDTH_TO_OPEN_SUSPENDED_DRAWER = 120;
-const ANIMATION_DURATION = 250;
 
 const Drawer = ({ TopBar, Content }: DrawerProps) => {
   const [drawerState, setDrawerState] = useState<DrawerState>("clicked");
@@ -48,7 +47,7 @@ const Drawer = ({ TopBar, Content }: DrawerProps) => {
           <Items />
         </DialogContent>
 
-        <Container>
+        <Container open={isClicked}>
           {React.cloneElement(
             TopBar,
             undefined,
@@ -72,11 +71,11 @@ const Wrapper = styled(Flex, {
 });
 
 const DialogContent = styled(Dialog.Content, {
-  transition: `all ${ANIMATION_DURATION}ms ease-in`,
+  height: "fit-content",
+  transition: "$drawer",
   opacity: 1,
-  position: "absolute",
   width: 240,
-  zIndex: 999,
+  zIndex: 50,
 
   "&:focus": {
     outline: "none",
@@ -91,7 +90,6 @@ const DialogContent = styled(Dialog.Content, {
       clicked: {
         backgroundColor: "$white100",
         height: "100vh",
-        position: "relative",
         transform: "translateX(0)",
       },
       suspended: {
@@ -115,7 +113,17 @@ const DialogContent = styled(Dialog.Content, {
 });
 
 const Container = styled("div", {
-  flex: 1,
+  width: "100%",
+  position: "absolute",
+  transition: "$drawer",
+
+  variants: {
+    open: {
+      true: {
+        paddingLeft: "240px",
+      },
+    },
+  },
 });
 
 export { Drawer };
