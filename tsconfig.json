@@ -21,6 +21,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@public/*": ["./public/*"],
       "@design-system/*": ["./src/packages/design-system/*"],
       "@site/*": ["./src/packages/site/*"]
     }

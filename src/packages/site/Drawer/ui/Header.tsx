@@ -1,10 +1,10 @@
 import Image from "next/image";
+import MyAvatar from "@public/assets/my-avatar.webp";
 import {
   Title as DialogTitle,
   Close as DialogClose,
 } from "@radix-ui/react-dialog";
 import { IconButton, Icon, Title, Flex } from "@design-system/ui";
-import MyAvatar from "@site/Drawer/shared/assets/my-avatar.webp";
 import { styled } from "@/lib/stitches.config";
 
 interface HeaderProps {
