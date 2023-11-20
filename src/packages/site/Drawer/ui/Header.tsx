@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   Title as DialogTitle,
   Close as DialogClose,
@@ -15,12 +14,7 @@ export const Header = ({ showCloseButton, onClose }: HeaderProps) => {
   return (
     <DrawerHeader as="header">
       <Avatar>
-        <Image
-          alt="avatar"
-          width={20}
-          height={20}
-          src="/assets/my-avatar.webp"
-        />
+        <img alt="avatar" width={20} height={20} src="/assets/my-avatar.webp" />
       </Avatar>
 
       <DialogTitle>
