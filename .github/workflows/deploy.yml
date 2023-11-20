@@ -28,4 +28,4 @@ jobs:
         run: npm install && npm run build
 
       - name: Deploy to luisao.xyz
-        run: aws s3 sync ./ s3://luisao.xyz --delete --exclude "*" --include "out/*.*"
+        run: aws s3 sync ./out s3://luisao.xyz --delete --include "*"
