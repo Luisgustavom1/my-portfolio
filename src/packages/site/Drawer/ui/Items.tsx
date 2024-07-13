@@ -1,5 +1,6 @@
 import { Button, Icon } from "@design-system/ui";
 import { styled } from "@/lib/stitches.config";
+import { LINKS } from "../shared/constants/links";
 import { ItemsAccordion } from "./ItemsAccordion";
 
 export const Items = () => {
@@ -18,18 +19,24 @@ export const Items = () => {
 
       <ItemsContainer>
         <ItemsAccordion title="Social Media">
-          <Item>
-            <Icon size={14} icon="github" />
-            <Text>Github</Text>
-          </Item>
-          <Item>
-            <Icon size={14} icon="linkedin" />
-            <Text>Linkedin</Text>
-          </Item>
-          <Item>
-            <Icon size={14} icon="dev.to" />
-            <Text>Dev.to</Text>
-          </Item>
+          <a href={LINKS.github} target="_blank" rel="noreferrer">
+            <Item>
+              <Icon size={14} icon="github" />
+              <Text>Github</Text>
+            </Item>
+          </a>
+          <a href={LINKS.linkedin} target="_blank" rel="noreferrer">
+            <Item>
+              <Icon size={14} icon="linkedin" />
+              <Text>Linkedin</Text>
+            </Item>
+          </a>
+          <a href={LINKS.devTo} target="_blank" rel="noreferrer">
+            <Item>
+              <Icon size={14} icon="dev.to" />
+              <Text>Dev.to</Text>
+            </Item>
+          </a>
         </ItemsAccordion>
       </ItemsContainer>
     </>
@@ -54,6 +61,10 @@ const Text = styled("p", {
 
 const ItemsContainer = styled("section", {
   padding: "0 $1 $2",
+
+  a: {
+    textDecoration: "none",
+  },
 
   variants: {
     border: {
